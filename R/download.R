@@ -61,10 +61,12 @@ get_folder_name = function(path) {
 
 #' Initializes a folder to save the downloads and adds it to the `.Rbuildignore`
 #'
+#' @param folder character; folder to initilize package structure.
+#'
 #' @export
-init = function() {
-  if (!dir.exists(file.path(getwd(), "check_win_devel"))) dir.create(file.path(getwd(), "check_win_devel"))
-  if (file.exists(".Rbuildignore") & !("^check_win_devel$" %in% readLines(".Rbuildignore"))) write("^check_win_devel$", file = ".Rbuildignore", append = TRUE)
+init = function(folder = getwd()) {
+  if (!dir.exists(file.path(folder, "check_win_devel"))) dir.create(file.path(folder, "check_win_devel"))
+  if ( file.path(folder, ".Rbuildignore") |> {\(.) file.exists(.) & !("^check_win_devel$" %in% readLines(.))}() ) write("^check_win_devel$", file = file.path(folder, ".Rbuildignore"), append = TRUE)
 }
 
 

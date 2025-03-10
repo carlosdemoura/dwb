@@ -14,3 +14,20 @@ test_that("get_folder_name() works", {
   expect_equal(get_folder_name("r-project.org/a/"), "a")
   expect_equal(get_folder_name("r-project.org/a/b/"), "b")
 })
+
+test_that("init() works", {
+  x = file.path(tempdir(), "test_dwb")
+  if (dir.exists(x)) unlink(x)
+  dir.create(x)
+
+  file.create(file.path(x, ".Rbuildignore"))
+  sink(file.path(x, ".Rbuildignore"))
+  sink()
+
+  init(x)
+
+  expect_true(dir.exists(file.path(x, "check_win_devel")))
+  expect_true("^check_win_devel$" %in% readLines(file.path(x, ".Rbuildignore")))
+
+  unlink(x)
+})
