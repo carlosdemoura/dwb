@@ -61,7 +61,7 @@ get_folder_name = function(path) {
 
 #' Initializes a folder to save the downloads and adds it to the `.Rbuildignore`
 #'
-#' @param folder character; folder to initilize package structure.
+#' @param folder character; folder to initialize package structure.
 #'
 #' @export
 init = function(folder = getwd()) {

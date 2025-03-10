@@ -4,7 +4,10 @@
 \alias{init}
 \title{Initializes a folder to save the downloads and adds it to the \code{.Rbuildignore}}
 \usage{
-init()
+init(folder = getwd())
+}
+\arguments{
+\item{folder}{character; folder to initialize package structure.}
 }
 \description{
 Initializes a folder to save the downloads and adds it to the \code{.Rbuildignore}
