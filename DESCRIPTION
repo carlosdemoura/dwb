@@ -1,0 +1,20 @@
+Package: dwb
+Title: Download the Check/Build Report From win-builder
+Version: 0.0.0.9000
+Authors@R: 
+    person("Carlos", "de Moura", , "lcbarrosdemoura@gmail.com", role = c("aut", "cre", "cph"))
+Description: The R Foundation maintains a useful tool for checking and building packages at win-builder.r-project.org. This package is meant to facilitate the download of their reports.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends:
+    R (>= 4.1.0)
+Suggests: 
+    testthat (>= 3.0.0)
+Imports:
+    purrr,
+    rvest,
+    stringr,
+    utils
+Config/testthat/edition: 3
