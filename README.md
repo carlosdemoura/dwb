@@ -2,9 +2,10 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/carlosdemoura/dwb/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/carlosdemoura/dwb/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of `dwb` is to facilitate the download of the check/build reports from the tool ["Building and checking R source packages for Windows"](https://win-builder.r-project.org/)
+The goal of `dwb` is to facilitate the download of the check/build reports from the tool ["Building and checking R source packages for Windows"](https://win-builder.r-project.org/).
 
 ## Installation
 

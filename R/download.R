@@ -50,7 +50,7 @@ validate_url = function(url) {
 #' @param path character; a url path, must be a folder, i.e., to end with "/".
 #'
 #' @return character.
-get_parent_folder = function(path) {
+get_folder_name = function(path) {
   path |>
     strsplit("/") |>
     purrr::pluck(1) |>
@@ -95,7 +95,7 @@ download_report = function(url, path.dump = file.path(getwd(), "check_win_devel"
     rvest::read_html()
 
   path = url |>
-    get_parent_folder()
+    get_folder_name()
 
   if(path == substr(url, 2, 13)) {
     path = page |>
@@ -103,9 +103,10 @@ download_report = function(url, path.dump = file.path(getwd(), "check_win_devel"
       rvest::html_text() |>
       substr(33, 51) |>
       {\(.) gsub("[.]", "_", .)}()  |>
-      {\(.) gsub(":", "", .)}()     |>
+      {\(.) gsub(":", "h", .)}()    |>
       {\(.) gsub("    ", "_", .)}() |>
-      stringr::str_replace("(\\d{2})_(\\d{2})_(\\d{4})_(\\d{4})", "\\3_\\1_\\2_\\4")
+      stringr::str_replace("(\\d{2})_(\\d{2})_(\\d{4})_(\\d{2}h\\d{2})", "\\3_\\1_\\2_\\4") |>
+      {\(.) paste0(., "_", path)}()
   }
 
   links = page |>
@@ -124,10 +125,12 @@ download_report = function(url, path.dump = file.path(getwd(), "check_win_devel"
 
   for (file in files) {
     file.name = file |>
-      get_parent_folder()
+      get_folder_name()
 
-    download.file(url = paste0("https://win-builder.r-project.org", file),
-                  destfile = file.path(path.dump, path, file.name))
+    try(
+      download.file(url = paste0("https://win-builder.r-project.org", file),
+                    destfile = file.path(path.dump, path, file.name))
+    )
   }
 
   if (length(folder)) {
